@@ -1,18 +1,20 @@
-N = int(raw_input())
-nested_list = []
-for i in range(N):
-    name = str(raw_input())
-    score = float(raw_input())
-    nested_list.append([name,score])
-marks = []
-for i in range(N):
-    marks.append(nested_list[i][1])
-marks = list(set(marks))
-marks.sort()
-second_lowest = marks[1]
-name_list = []
-for i in range(N):
-    if(nested_list[i][1] == second_lowest):
-        name_list.append(nested_list[i][0])
-name_list.sort()
-print "\n".join(name_list)
+if __name__ == "__main__":
+    students = []
+
+    for _ in range(int(input())):
+        name = input().strip()
+        grade = float(input())
+        students.append([name, grade])
+
+    # Extract all grades
+    grades = sorted({grade for _, grade in students})  # unique + sorted
+
+    second_lowest = grades[1]  # second lowest grade
+
+    # Get all names with that grade
+    result = sorted([name for name, grade in students if grade == second_lowest])
+
+    # Print names
+    for name in result:
+        print(name)
+
